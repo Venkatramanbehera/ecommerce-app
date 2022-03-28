@@ -1,0 +1,29 @@
+{
+  "name": "com.ecommerce.learning-app",
+  "version": "1.0.0",
+  "description": "Ecommerce app using Mern stack technology and learning devops  ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Venkatramanbehera/ecommerce-app.git"
+  },
+  "author": "Venkat Raman Behera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Venkatramanbehera/ecommerce-app/issues"
+  },
+  "homepage": "https://github.com/Venkatramanbehera/ecommerce-app#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.8",
+    "nodemon": "^2.0.15"
+  }
+}
