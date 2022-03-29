@@ -1,0 +1,7 @@
+export const ERRORS = "ERRORS";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const PRODUCTS = "PRODUCTS";
+export const SUCCESSFULLY_REGISTER = "SUCCESSFULLY_REGISTER";
+export const FAILURE_REGISTER = "FAILURE_REGISTER";
+export const AUTH_ERROR = "AUTH_ERROR";
