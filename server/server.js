@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5000;
 const configureDB = require('./config/db');
+const cors = require('cors')
+
+app.use(cors());
 
 // connect To MONGODB
 configureDB();

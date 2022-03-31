@@ -13,7 +13,7 @@ const intialState = {
     errors: []
 };
 
-export default function (state = intialState, actions) {
+const authReducer = (state = intialState, actions) => {
     const { payload } = actions;
     switch (actions.type) {
         case SET_CURRENT_USER:
@@ -40,10 +40,12 @@ export default function (state = intialState, actions) {
         case ERRORS:
             return {
                 ...state,
-                error: payload
+                errors: payload
             }
 
         default:
             return state
     }
 }
+
+export default authReducer;

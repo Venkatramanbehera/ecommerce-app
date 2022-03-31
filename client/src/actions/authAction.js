@@ -2,12 +2,12 @@ import axios from 'axios';
 import {
     SET_CURRENT_USER,
     ERRORS,
-    GET_PRODUCTS,
+    // GET_PRODUCTS,
     FAILURE_REGISTER,
     SUCCESSFULLY_REGISTER,
     AUTH_ERROR
 } from '../actions/types';
-import { setAuthToken } from '../utils/setAuthToken';
+import setAuthToken from '../utils/setAuthToken';
 import { getServer } from '../utils';
 
 export const setCurrentUser = user => async dispatch => {
@@ -18,7 +18,7 @@ export const setCurrentUser = user => async dispatch => {
         const res = await axios.get(`${getServer}/api/auth`);
         dispatch({
             type: SET_CURRENT_USER,
-            payload: user
+            payload: res.data
         })
     } catch (err) {
         dispatch({
@@ -30,17 +30,17 @@ export const setCurrentUser = user => async dispatch => {
 export const register = (userData) => async (dispatch) => {
     const config = {
         headers: {
-            'Content-type': 'application/json'
+            'Content-Type': 'application/json'
         }
     }
     try {
-        const res = await axios.post(`${getServer}/api/users`, userData, config);
+        const res = await axios.post(`${getServer()}/api/users`, userData, config);
         dispatch({
             type: SUCCESSFULLY_REGISTER,
             payload: res.data
         })
     } catch (err) {
-        const errors = err.response.data.error;
+        const errors = err.response.data.errors;
         if (errors) {
             dispatch({
                 type: ERRORS,
