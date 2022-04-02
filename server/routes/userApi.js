@@ -27,7 +27,7 @@ router.post(
             return res.status(400).json({ errors: errors.array() })
         }
         try {
-            const { name, email, password } = req.body;
+            const { name, email, password, role } = req.body;
             let user = await User.findOne({ email: email });
             // if we dont use async await we will be getting errors because User.findOne({}) return an
             //  promise so if that return an promise then we use await infront of that oterwise we getting 
@@ -37,7 +37,7 @@ router.post(
                     .status(400)
                     .json({ errors: [{ "msg": "User already exists" }] })
             }
-            user = new User({ name, email, password })
+            user = new User({ name, email, password, role })
             // first we have to create a salt value as for the company standards using bcrypt.genSalt()
             // then we can hash our password using bcrypt.hash(password, salt )
             const salt = await bcrypt.genSalt(10);

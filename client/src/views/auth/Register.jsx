@@ -3,19 +3,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '../../components';
 import { register } from '../../actions/authAction';
 import { message } from 'antd';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ERRORS } from '../../actions/types';
 
-const Register = () => {
+const Register = (props) => {
     const [user, setUser] = useState({
         name: '',
         email: '',
         password: '',
         confirmPassword: ''
     })
-    const [authError] = useSelector((state) => {
-        return [state.auth.errors]
+    const [authError, authState] = useSelector((state) => {
+        return [state.auth.errors, state.auth]
     })
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    // navigate('url') is used to navigate to that path
     useEffect(() => {
         authError.length > 0 &&
             authError.forEach((error) => {
@@ -44,14 +49,26 @@ const Register = () => {
     }
 
     const handleSubmit = () => {
+        let role = location.search.split("?role=");
+        role = role[role.length - 1];
+        // console.log(role);
         const { name, email, password, confirmPassword } = user;
         const newUser = {
             name,
             email,
-            password
+            password,
+            role
         }
         if (password === confirmPassword) {
             dispatch(register(newUser));
+            if (authState.isAuthenticated) {
+                message.success(' Sucessfully register ');
+                setTimeout(() => navigate('/'), 3000);
+                dispatch({
+                    type: ERRORS,
+                    payload: []
+                });
+            }
         } else {
             message.error('password didnt match');
         }
