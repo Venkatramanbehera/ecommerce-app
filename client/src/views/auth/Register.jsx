@@ -28,6 +28,16 @@ const Register = (props) => {
             })
     }, [authError])
 
+    useEffect(() => {
+        if (authState.isAuthenticated) {
+            setTimeout(() => navigate('/'), 3000);
+            dispatch({
+                type: ERRORS,
+                payload: []
+            });
+        }
+    }, [authState.isAuthenticated])
+
     const handleChange = (e) => {
         const value = e.target.value;
         switch (e.target.name) {
@@ -51,7 +61,7 @@ const Register = (props) => {
     const handleSubmit = () => {
         let role = location.search.split("?role=");
         role = role[role.length - 1];
-        // console.log(role);
+
         const { name, email, password, confirmPassword } = user;
         const newUser = {
             name,
@@ -61,14 +71,6 @@ const Register = (props) => {
         }
         if (password === confirmPassword) {
             dispatch(register(newUser));
-            if (authState.isAuthenticated) {
-                message.success(' Sucessfully register ');
-                setTimeout(() => navigate('/'), 3000);
-                dispatch({
-                    type: ERRORS,
-                    payload: []
-                });
-            }
         } else {
             message.error('password didnt match');
         }
