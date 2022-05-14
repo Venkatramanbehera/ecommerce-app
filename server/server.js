@@ -14,6 +14,7 @@ app.use(express.json({ extended: false }));
 app.use("/api/users", require("./routes/userApi"));
 app.use("/api/products", require("./routes/productsApi"));
 app.use("/api/auth", require("./routes/authApi"));
+app.use("/api/profile", require("./routes/profileApi"));
 
 app.get("/", (req, res) => {
   res.send("My App is up");
