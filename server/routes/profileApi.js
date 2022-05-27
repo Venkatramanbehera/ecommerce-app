@@ -7,7 +7,6 @@ const Products = require("../models/Products");
 const User = require("../models/User");
 
 router.get("/:id", async (req, res) => {
-  //   console.log("object", req.params.id);
   try {
     const profile = await Profile.findOne({ userId: req.params.id });
     if (!profile) {
@@ -79,9 +78,12 @@ router.post(
 );
 router.delete("/", auth, async (req, res) => {
   try {
-    await Products.findByIdAndRemove({ userId: req.params.id });
-    await Profile.findOneAndRemove({ userId: req.params.id });
-    await User.findOneAndRemove({ _id: req.params.id });
+    const products = await Products.find({ userId: req.user.id });
+    products.forEach(async (product) => {
+      await Products.findOneAndRemove({ _id: product._id });
+    });
+    await Profile.findOneAndRemove({ userId: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
     res.json({ msg: "User successfully deleted" });
   } catch (e) {
     console.error(e);

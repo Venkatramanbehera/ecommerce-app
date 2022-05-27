@@ -9,10 +9,10 @@ router.post(
     auth,
     [
       check("name", "Name is Required").not().isEmpty(),
-      check("description", "description is Required").not().isEmpty(),
-      check("category", "category is Required").not().isEmpty(),
-      check("price", "price is Required").not().isEmpty(),
-      check("quantity", "quantity is Required").not().isEmpty(),
+      check("description", "Description is Required").not().isEmpty(),
+      check("category", "Category is Required").not().isEmpty(),
+      check("price", "Price is Required").not().isEmpty(),
+      check("quantity", "Quantity is Required").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -34,8 +34,8 @@ router.post(
       const product = await newProduct.save();
       res.json({ product });
     } catch (error) {
-      // console.error(error.message)
-      return res.status(500).json({ msg: "Server Error" });
+      console.error(error.message);
+      res.status(500).send("Server error");
     }
   }
 );
