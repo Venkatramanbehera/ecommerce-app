@@ -1,0 +1,17 @@
+FROM node:16.17.0-alpine
+#pull official base image
+
+WORKDIR /app
+#specifying the work directory
+
+COPY ./package.json ./
+#copy the package json file
+
+RUN npm install
+#install all the packages that has been added in the package.json
+
+COPY . .
+#copy everything in this directory
+
+CMD ["npm", "start"]
+# this will start the application

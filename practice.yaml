@@ -1,0 +1,16 @@
+#This is a comment 
+person:
+  name : "venkat raman behera"
+  occupation : "Software Engineer"
+  weakness: null
+  isTwin: false
+  cars: 0
+  hobbies: 
+    - watching soccer
+    - coding
+    - learning new technology
+  teams: ["chalse", "Real Madrid"]
+  friends: 
+    - name: "Ben"
+      age: 30
+    - {name: 'John', age: 40}
