@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 8080;
 const configureDB = require("./config/db");
 const cors = require("cors");
 const morgan = require("morgan");
+require("dotenv").config();
+const PORT = process.env.PORT || 8080;
 app.use(cors());
 app.use(morgan("dev"));
 // connect To MONGODB

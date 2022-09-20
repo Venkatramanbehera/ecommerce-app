@@ -1,5 +1,6 @@
+require("dotenv").config();
+
 module.exports = {
-  mongoURI:
-    "mongodb+srv://venkat:venkat@cluster0.fmpgo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  jwtSecret: "ecommerceSecret",
+  mongoURI: process.env.DB_KEY,
+  jwtSecret: process.env.SECRET_KEY,
 };
