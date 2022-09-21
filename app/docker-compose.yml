@@ -1,11 +1,20 @@
 version: '3'
 services:
+  #for production
+  server: 
+    image: orezimeteaching/server
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_KEY=${DB_KEY}
   app:
     build: 
       dockerfile: Dockerfile.dev
       context: ./
+    depends_on:
+      - server
     volumes:
       - ./node_modules:/app/node_modules
-      - ./:./app
+      - ./:/app
     ports:
       - "3000:3000"
