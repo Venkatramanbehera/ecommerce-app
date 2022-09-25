@@ -1,0 +1,9 @@
+sudo: required
+services: 
+  - docker
+
+before_install: 
+  - docker build -t orezimeteaching/server -f Dockerfile.dev .
+
+script:
+  - docker run orezimeteaching/server npm test -- --coverage
