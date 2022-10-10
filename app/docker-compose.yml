@@ -2,7 +2,7 @@ version: '3'
 services:
   #for production
   server: 
-    image: orezimeteaching/server
+    image: venkataramanbehera/ecommerce-app/server
     ports:
       - "5000:5000"
     environment:
